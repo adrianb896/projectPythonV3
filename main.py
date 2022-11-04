@@ -29,8 +29,11 @@ for tag in parentTagList:
     else:
         uniqueValidTagList.append(tag)              # if not a tuple simply append to the list
 uniqueTagList = (list(set(uniqueValidTagList)))     # set() strips out all redundant tags
+print("Unique list: ", uniqueTagList)
+# print("Unique Valid tags: ", uniqueValidTagList)
 
-filePath = "C:/Users/steph/OneDrive/Desktop/Docs_Project/"
+#filePath = "C:/Users/steph/OneDrive/Desktop/Docs_Project/"
+filePath = "/Users/adrian/Desktop/SampledocsTandem/"
 
 def GetText(filename):                      # Opens the document and places each paragraph into a list
     doc = docx.Document(filename)
@@ -103,6 +106,12 @@ def GetChildTags():                     # Returns only valid child tags
                         print(y[0])
                 index = index + 1
             #print(ind)
+        for y in uniqueTagList:
+            try:
+                docFileList.remove(y)
+            except ValueError:
+                pass
+        print("New list after comparing and extracting all orphan tags with valid child tags: ", docFileList)
 
 def GetOrphanTags():
     pass
